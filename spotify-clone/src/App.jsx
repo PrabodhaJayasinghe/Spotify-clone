@@ -1,10 +1,13 @@
 // eslint-disable-next-line no-unused-vars
-import React from "react";
+import React, { useContext } from "react";
 import Sidebar from "./components/Sidebar";
 import Player from "./components/player";
 import Display from "./components/Display";
+import { PlayerContext } from "./context/PlayerContext";
 
 const App = () => {
+  
+  const {audioRef,track} = useContext(PlayerContext);
   return (
     <div className="h-screen bg-black">
       <div className="h-[90%] flex">
@@ -12,7 +15,8 @@ const App = () => {
         <Display/>
       </div>
     <Player/>
-    <audio preload='auto'></audio>
+     <audio ref = {audioRef} src = {track.file} preload='auto'></audio>  
+     {/* link audioref in audio tag */}
     </div>
   );
 };
